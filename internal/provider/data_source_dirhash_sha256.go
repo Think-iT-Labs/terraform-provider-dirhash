@@ -35,15 +35,15 @@ func dataSourceDirhashSha256() *schema.Resource {
 	}
 }
 
-func dataSourceDirhashSha256Read(ctx context.Context, dr *schema.ResourceData, meta any) diag.Diagnostics {
-	dir := dr.Get("directory").(string)
-	dr.SetId(dir)
+func dataSourceDirhashSha256Read(ctx context.Context, rd *schema.ResourceData, meta any) diag.Diagnostics {
+	dir := rd.Get("directory").(string)
+	rd.SetId(dir)
 	var ignore []string
-	if v, ok := dr.GetOk("ignore"); ok {
+	if v, ok := rd.GetOk("ignore"); ok {
 		ignore = stringInterfaceListToStringSlice(v.([]interface{}))
 	}
 	checksum := lib.DirHash(dir, ignore)
-	dr.Set("checksum", checksum)
+	rd.Set("checksum", checksum)
 	return nil
 }
 

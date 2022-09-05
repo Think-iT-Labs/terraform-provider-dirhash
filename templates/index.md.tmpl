@@ -12,7 +12,7 @@ based on whether changes have been made inside a directory or not.
 
 ## Data Source "dirhash_sha256"
 
-As noted above, the Dirhash provider can calculate the checksum of a directory, 
+As noted above, the Dirhash provider can compute the checksum of a directory, 
 the data_source `dirhash_sha256` can be used to retrieve the SHA256 of a directory.
 
 For example:
