@@ -1,12 +1,12 @@
 ---
 page_title: "Provider: Dirhash"
 description: |-
-  Calculate checksum for a given directory
+  Compute checksum for a given directory
 ---
 
 # Dirhash Provider
 
-Dirhash was created to calculate checksum of a directory, 
+Dirhash was created to compute the checksum of a directory, 
 a useful provider if you try to make Terraform react and make changes 
 based on whether changes have been made inside a directory or not.
 

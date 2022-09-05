@@ -1,10 +1,12 @@
 # Dirhash
-Calculating the checksum of a directory made easy.
+Computing the checksum of a directory made easy.
 
 ## Dirhash Provider
-Dirhash was created to calculate checksum of a directory, 
+Dirhash was created to compute the checksum of a directory, 
 a useful provider if you try to make Terraform react and make changes 
 based on whether changes have been made inside a directory or not.
+
+
 ### Usage
 As noted above, the Dirhash provider can calculate the checksum of a directory, 
 the data_source `dirhash_sha256` can be used to retrieve the SHA256 of a directory.

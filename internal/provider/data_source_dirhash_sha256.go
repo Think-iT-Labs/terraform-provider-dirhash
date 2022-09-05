@@ -10,7 +10,7 @@ import (
 
 func dataSourceDirhashSha256() *schema.Resource {
 	return &schema.Resource{
-		Description: "Calculate SHA256 checksum of a given directory",
+		Description: "Compute SHA256 checksum of a given directory",
 
 		ReadContext: dataSourceDirhashSha256Read,
 
@@ -35,26 +35,24 @@ func dataSourceDirhashSha256() *schema.Resource {
 	}
 }
 
-func dataSourceDirhashSha256Read(ctx context.Context, d *schema.ResourceData, meta any) diag.Diagnostics {
-	var dir = d.Get("directory").(string)
-	d.SetId(dir)
-	var ignore = []string{}
-	if v, ok := d.GetOk("ignore"); ok {
-		ignore = stringListToStringSlice(v.([]interface{}))
+func dataSourceDirhashSha256Read(ctx context.Context, dr *schema.ResourceData, meta any) diag.Diagnostics {
+	dir := dr.Get("directory").(string)
+	dr.SetId(dir)
+	var ignore []string
+	if v, ok := dr.GetOk("ignore"); ok {
+		ignore = stringInterfaceListToStringSlice(v.([]interface{}))
 	}
-	var checksum = lib.DirHash(dir, ignore)
-	d.Set("checksum", checksum)
+	checksum := lib.DirHash(dir, ignore)
+	dr.Set("checksum", checksum)
 	return nil
 }
 
-func stringListToStringSlice(stringList []interface{}) []string {
-	ret := []string{}
+func stringInterfaceListToStringSlice(stringList []interface{}) []string {
+	var ret []string
 	for _, v := range stringList {
-		if v == nil {
-			ret = append(ret, "")
-			continue
+		if v != nil {
+			ret = append(ret, v.(string))
 		}
-		ret = append(ret, v.(string))
 	}
 	return ret
 }
